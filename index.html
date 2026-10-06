@@ -84,7 +84,7 @@ function orderCard(o){
   return `<div class="card order"><div class="row"><div><strong>${esc(o.customer_name)}</strong><div class="muted">${nice(o.order_date)} · ${esc(o.phone||'No phone')}</div></div><span class="badge ${overdue?'red':''}">${overdue?'OVERDUE':o.order_type==='regular'?'WEEKLY':o.status.toUpperCase()}</span></div><div class="line"><span>${esc(o.brand)} · ${esc(o.bread_type)}</span><strong>× ${o.quantity}</strong></div><div class="actions"><button class="secondary" data-ready="${o.id}">Ready</button><button class="primary" data-collected="${o.id}">Collected</button></div></div>`
 }
 function itemCard(i){
-  return `<div class="card item"><div class="row"><div><div class="item-title"><strong>${esc(i.name)}</strong><span class="badge ${i.active?'':'off'}">${i.active?'ACTIVE':'INACTIVE'}</span></div><div class="muted">${esc(i.brand)}</div></div>${canManageItems()?'<button class="secondary" data-toggle-item="'+i.id+'">'+(i.active?'Deactivate':'Activate')+'</button>':''}</div></div>`
+  return `<div class="card item"><div class="row"><div><div class="item-title"><strong>${esc(i.name)}</strong><span class="badge ${i.active?'':'off'}">${i.active?'ACTIVE':'INACTIVE'}</span></div><div class="muted">${esc(i.brand)}</div></div>${canManageItems()?'<div class="actions"><button class="secondary" data-edit-item="'+i.id+'">Edit</button><button class="secondary" data-toggle-item="'+i.id+'">'+(i.active?'Deactivate':'Activate')+'</button></div>':''}</div></div>`
 }
 function wire(){
   document.querySelectorAll('[data-ready]').forEach(b=>b.onclick=async()=>{
@@ -97,6 +97,10 @@ function wire(){
     patch.updated_at=new Date().toISOString();patch.last_collected_at=new Date().toISOString();
     let r=await sb.from('bread_orders_simple').update(patch).eq('id',o.id);
     if(r.error)return alert(r.error.message);refresh();
+  });
+  document.querySelectorAll('[data-edit-item]').forEach(b=>b.onclick=()=>{
+    let i=items.find(x=>x.id===b.dataset.editItem);
+    if(i)openEditItem(i);
   });
   document.querySelectorAll('[data-toggle-item]').forEach(b=>b.onclick=async()=>{
     let i=items.find(x=>x.id===b.dataset.toggleItem);
@@ -162,6 +166,24 @@ function openItem(){
     let r=await sb.from('bread_items').insert(payload);
     if(r.error){
       if(r.error.code==='23505')return alert('That item already exists.');
+      return alert(r.error.message);
+    }
+    $('modal').classList.add('hidden');refresh();
+  };
+}
+function openEditItem(item){
+  if(!canManageItems()||!item)return;
+  $('modal').classList.remove('hidden');
+  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Edit item</h2><button id="close" class="secondary">Close</button></div><form id="editItemForm" class="form" style="margin-top:14px"><input id="editItemBrand" placeholder="Brand" value="${esc(item.brand)}" required><input id="editItemName" placeholder="Item name" value="${esc(item.name)}" required><button class="primary">Save changes</button></form></div>`;
+  $('close').onclick=()=>$('modal').classList.add('hidden');
+  $('editItemForm').onsubmit=async e=>{
+    e.preventDefault();
+    const brand=$('editItemBrand').value.trim();
+    const name=$('editItemName').value.trim();
+    if(!brand||!name)return alert('Brand and item name are required.');
+    let r=await sb.from('bread_items').update({brand,name,updated_at:new Date().toISOString()}).eq('id',item.id);
+    if(r.error){
+      if(r.error.code==='23505')return alert('An item with that brand and name already exists.');
       return alert(r.error.message);
     }
     $('modal').classList.add('hidden');refresh();
