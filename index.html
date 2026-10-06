@@ -6,21 +6,23 @@
 <meta name="theme-color" content="#17352c">
 <title>Happy Olive Tree — Bread Orders</title>
 <style>
-:root{--bg:#f7f7f2;--card:#fff;--text:#202824;--muted:#748078;--line:#e1e6e2;--green:#17352c;--soft:#eef1ea;--red:#a33a32}
+:root{--bg:#f7f7f2;--card:#fff;--text:#202824;--muted:#748078;--line:#e1e6e2;--green:#17352c;--soft:#eef1ea;--red:#a33a32;--amber:#8b641c}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
-button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.center{min-height:100dvh;display:grid;place-items:center;padding:20px}
+button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.center{min-height:100dvh;display:grid;place-items:center;padding:20px}
 .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}.auth{width:min(420px,100%);display:grid;gap:12px}
-input{width:100%;border:1px solid #cfd7d2;background:#fff;border-radius:13px;padding:12px}.primary{border:0;background:var(--green);color:#fff;border-radius:13px;padding:12px 15px;font-weight:800}
+input,select{width:100%;border:1px solid #cfd7d2;background:#fff;border-radius:13px;padding:12px}.primary{border:0;background:var(--green);color:#fff;border-radius:13px;padding:12px 15px;font-weight:800}
 .secondary{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 11px;font-weight:700}.danger{color:var(--red)}
-.shell{max-width:720px;margin:auto;padding-bottom:90px}.top{position:sticky;top:0;background:#f7f7f2ee;backdrop-filter:blur(10px);padding:15px;display:flex;justify-content:space-between;z-index:4}
-.view{padding:0 14px 24px}.brand{font-size:.72rem;font-weight:900;letter-spacing:.11em;color:#7b865d}h1,h2,p{margin:0}.muted{color:var(--muted);font-size:.82rem}
+.shell{max-width:720px;margin:auto;padding-bottom:92px}.top{position:sticky;top:0;background:#f7f7f2ee;backdrop-filter:blur(10px);padding:15px;display:flex;justify-content:space-between;z-index:4}
+.view{padding:0 14px 24px}.brand{font-size:.72rem;font-weight:900;letter-spacing:.11em;color:#7b865d}h1,h2,h3,p{margin:0}.muted{color:var(--muted);font-size:.82rem}
 .hero{background:var(--green);color:#fff;border-radius:20px;padding:16px;margin-bottom:14px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.metric{background:#ffffff17;border-radius:13px;padding:10px}.metric strong{display:block;font-size:1.45rem}
-.stack{display:grid;gap:10px}.section{display:flex;justify-content:space-between;align-items:end;margin:18px 2px 8px}.order{display:grid;gap:8px}.row{display:flex;justify-content:space-between;gap:8px;align-items:center}
-.line{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px}.badge{font-size:.7rem;font-weight:800;background:var(--soft);padding:5px 8px;border-radius:999px}.badge.red{background:#fbeceb;color:var(--red)}
-.actions{display:flex;gap:7px;flex-wrap:wrap}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:white;border-top:1px solid var(--line);padding:8px}
-.nav button{border:0;background:none;padding:10px;border-radius:10px}.nav button.active{background:var(--soft);font-weight:800}.fab{position:fixed;right:20px;bottom:82px;width:58px;height:58px;border:0;border-radius:18px;background:var(--green);color:#fff;font-size:1.8rem}
+.stack{display:grid;gap:10px}.section{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 8px}.order,.item{display:grid;gap:8px}.row{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.line{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px}.badge{font-size:.7rem;font-weight:800;background:var(--soft);padding:5px 8px;border-radius:999px}.badge.red{background:#fbeceb;color:var(--red)}.badge.off{background:#f4eee1;color:var(--amber)}
+.actions{display:flex;gap:7px;flex-wrap:wrap}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:white;border-top:1px solid var(--line);padding:8px;z-index:5}
+.nav button{border:0;background:none;padding:10px 4px;border-radius:10px;font-size:.82rem}.nav button.active{background:var(--soft);font-weight:800}.fab{position:fixed;right:20px;bottom:84px;width:58px;height:58px;border:0;border-radius:18px;background:var(--green);color:#fff;font-size:1.8rem;z-index:6}
 .modal{position:fixed;inset:0;background:#0007;display:grid;place-items:end center;z-index:20}.sheet{width:min(720px,100%);background:#fff;border-radius:22px 22px 0 0;padding:18px 16px 28px;max-height:94dvh;overflow:auto}
 .form{display:grid;gap:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.seg{display:grid;grid-template-columns:1fr 1fr;gap:5px}.seg button.active{background:var(--green);color:white}
+.empty{text-align:center;padding:24px 16px}.item-title{display:flex;gap:8px;align-items:center}.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+@media(max-width:430px){.two{grid-template-columns:1fr}.metrics{gap:6px}.metric{padding:9px 7px}.nav button{font-size:.75rem}}
 </style>
 </head>
 <body>
@@ -39,13 +41,17 @@ input{width:100%;border:1px solid #cfd7d2;background:#fff;border-radius:13px;pad
 </div>
 
 <div id="app" class="shell hidden">
-  <header class="top"><div><div class="brand">BREAD ORDERS</div><h1 id="title">Today</h1></div><button id="signout" class="secondary">Sign out</button></header>
+  <header class="top">
+    <div><div class="brand">BREAD ORDERS</div><h1 id="title">Today</h1></div>
+    <button id="signout" class="secondary">Sign out</button>
+  </header>
   <main id="view" class="view"></main>
-  <button id="fab" class="fab">+</button>
+  <button id="fab" class="fab" aria-label="Add">+</button>
   <nav class="nav">
     <button data-route="today" class="active">Today</button>
     <button data-route="upcoming">Upcoming</button>
     <button data-route="regular">Regular</button>
+    <button data-route="items">Items</button>
   </nav>
 </div>
 <div id="modal" class="modal hidden"></div>
@@ -55,27 +61,162 @@ input{width:100%;border:1px solid #cfd7d2;background:#fff;border-radius:13px;pad
 const SUPABASE_URL='https://encmdeinctvjhdiedjfu.supabase.co';
 const SUPABASE_KEY='sb_publishable_jwlX0Y-7M_D0CHZEzwbrow_E8yJ07oT';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true}});
-let session=null,storeId=null,orders=[],route='today';
+let session=null,profile=null,storeId=null,orders=[],items=[],route='today';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function d(off=0){let x=new Date();x.setDate(x.getDate()+off);return new Intl.DateTimeFormat('en-CA',{timeZone:'Australia/Melbourne',year:'numeric',month:'2-digit',day:'2-digit'}).format(x)}
 function nice(s){let [y,m,x]=s.split('-').map(Number);return new Intl.DateTimeFormat('en-AU',{weekday:'short',day:'numeric',month:'short'}).format(new Date(Date.UTC(y,m-1,x,12)))}
 function add7(s){let x=new Date(s+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+7);return x.toISOString().slice(0,10)}
-function active(){return orders.filter(o=>!['collected','cancelled'].includes(o.status))}
-async function refresh(){let r=await sb.from('bread_orders_simple').select('*').eq('store_id',storeId).order('order_date');if(r.error)return alert(r.error.message);orders=r.data||[];render()}
-function card(o){let overdue=o.order_date<d()&&!['collected','cancelled'].includes(o.status);return `<div class="card order"><div class="row"><div><strong>${esc(o.customer_name)}</strong><div class="muted">${nice(o.order_date)} · ${esc(o.phone||'No phone')}</div></div><span class="badge ${overdue?'red':''}">${overdue?'OVERDUE':o.order_type==='regular'?'WEEKLY':o.status.toUpperCase()}</span></div><div class="line"><span>${esc(o.brand)} · ${esc(o.bread_type)}</span><strong>× ${o.quantity}</strong></div><div class="actions"><button class="secondary" data-ready="${o.id}">Ready</button><button class="primary" data-collected="${o.id}">Collected</button></div></div>`}
-function wire(){document.querySelectorAll('[data-ready]').forEach(b=>b.onclick=async()=>{let r=await sb.from('bread_orders_simple').update({status:'ready',updated_at:new Date().toISOString()}).eq('id',b.dataset.ready);if(r.error)return alert(r.error.message);refresh()});document.querySelectorAll('[data-collected]').forEach(b=>b.onclick=async()=>{let o=orders.find(x=>x.id===b.dataset.collected);let patch=o.order_type==='regular'?{status:'pending',order_date:add7(o.order_date)}:{status:'collected'};patch.updated_at=new Date().toISOString();patch.last_collected_at=new Date().toISOString();let r=await sb.from('bread_orders_simple').update(patch).eq('id',o.id);if(r.error)return alert(r.error.message);refresh()})}
-function render(){document.querySelectorAll('[data-route]').forEach(b=>b.classList.toggle('active',b.dataset.route===route));let list=active();if(route==='today'){let today=list.filter(o=>o.order_date===d()),over=list.filter(o=>o.order_date<d()),tom=list.filter(o=>o.order_date===d(1));$('title').textContent='Today';$('view').innerHTML=`<div class="hero"><h2>Today</h2><div class="metrics"><div class="metric"><strong>${today.length}</strong>Today</div><div class="metric"><strong>${over.length}</strong>Overdue</div><div class="metric"><strong>${tom.length}</strong>Tomorrow</div></div></div><div class="section"><h2>Orders</h2><span class="muted">${today.length}</span></div><div class="stack">${today.map(card).join('')||'<div class="card muted">No orders today.</div>'}</div>`}
-else if(route==='upcoming'){let x=list.filter(o=>o.order_date>d()).sort((a,b)=>a.order_date.localeCompare(b.order_date));$('title').textContent='Upcoming';$('view').innerHTML='<div class="stack">'+(x.map(card).join('')||'<div class="card muted">No upcoming orders.</div>')+'</div>'}
-else{let x=list.filter(o=>o.order_type==='regular');$('title').textContent='Regular';$('view').innerHTML='<div class="stack">'+(x.map(card).join('')||'<div class="card muted">No regular orders.</div>')+'</div>'}wire()}
-function openNew(){let type='one_time';$('modal').classList.remove('hidden');$('modal').innerHTML=`<div class="sheet"><div class="row"><h2>New bread order</h2><button id="close" class="secondary">Close</button></div><form id="orderForm" class="form" style="margin-top:14px"><input id="name" placeholder="Customer name" required><input id="phone" placeholder="Phone number"><div class="two"><input id="brand" placeholder="Brand" required><input id="bread" placeholder="Bread type" required></div><div class="two"><input id="qty" type="number" min="1" value="1" required><input id="date" type="date" value="${d(1)}" required></div><div class="seg"><button type="button" id="one" class="secondary active">One-time</button><button type="button" id="reg" class="secondary">Regular weekly</button></div><button class="primary">Add order</button></form></div>`;$('close').onclick=()=>$('modal').classList.add('hidden');$('one').onclick=()=>{type='one_time';$('one').classList.add('active');$('reg').classList.remove('active')};$('reg').onclick=()=>{type='regular';$('reg').classList.add('active');$('one').classList.remove('active')};$('orderForm').onsubmit=async e=>{e.preventDefault();let payload={store_id:storeId,customer_name:$('name').value.trim(),phone:$('phone').value.trim()||null,brand:$('brand').value.trim(),bread_type:$('bread').value.trim(),quantity:Number($('qty').value),order_date:$('date').value,order_type:type,status:'pending',created_by:session.user.id,updated_at:new Date().toISOString()};let r=await sb.from('bread_orders_simple').insert(payload);if(r.error)return alert(r.error.message);$('modal').classList.add('hidden');refresh()}}
+function activeOrders(){return orders.filter(o=>!['collected','cancelled'].includes(o.status))}
+function activeItems(){return items.filter(i=>i.active)}
+function canManageItems(){return profile&&['admin','manager'].includes(profile.role)}
+async function refresh(){
+  const [or,ir]=await Promise.all([
+    sb.from('bread_orders_simple').select('*').eq('store_id',storeId).order('order_date'),
+    sb.from('bread_items').select('*').eq('store_id',storeId).order('brand').order('name')
+  ]);
+  if(or.error)return alert(or.error.message);
+  if(ir.error)return alert(ir.error.message);
+  orders=or.data||[];items=ir.data||[];render();
+}
+function orderCard(o){
+  let overdue=o.order_date<d()&&!['collected','cancelled'].includes(o.status);
+  return `<div class="card order"><div class="row"><div><strong>${esc(o.customer_name)}</strong><div class="muted">${nice(o.order_date)} · ${esc(o.phone||'No phone')}</div></div><span class="badge ${overdue?'red':''}">${overdue?'OVERDUE':o.order_type==='regular'?'WEEKLY':o.status.toUpperCase()}</span></div><div class="line"><span>${esc(o.brand)} · ${esc(o.bread_type)}</span><strong>× ${o.quantity}</strong></div><div class="actions"><button class="secondary" data-ready="${o.id}">Ready</button><button class="primary" data-collected="${o.id}">Collected</button></div></div>`
+}
+function itemCard(i){
+  return `<div class="card item"><div class="row"><div><div class="item-title"><strong>${esc(i.name)}</strong><span class="badge ${i.active?'':'off'}">${i.active?'ACTIVE':'INACTIVE'}</span></div><div class="muted">${esc(i.brand)}</div></div>${canManageItems()?'<button class="secondary" data-toggle-item="'+i.id+'">'+(i.active?'Deactivate':'Activate')+'</button>':''}</div></div>`
+}
+function wire(){
+  document.querySelectorAll('[data-ready]').forEach(b=>b.onclick=async()=>{
+    let r=await sb.from('bread_orders_simple').update({status:'ready',updated_at:new Date().toISOString()}).eq('id',b.dataset.ready);
+    if(r.error)return alert(r.error.message);refresh();
+  });
+  document.querySelectorAll('[data-collected]').forEach(b=>b.onclick=async()=>{
+    let o=orders.find(x=>x.id===b.dataset.collected);
+    let patch=o.order_type==='regular'?{status:'pending',order_date:add7(o.order_date)}:{status:'collected'};
+    patch.updated_at=new Date().toISOString();patch.last_collected_at=new Date().toISOString();
+    let r=await sb.from('bread_orders_simple').update(patch).eq('id',o.id);
+    if(r.error)return alert(r.error.message);refresh();
+  });
+  document.querySelectorAll('[data-toggle-item]').forEach(b=>b.onclick=async()=>{
+    let i=items.find(x=>x.id===b.dataset.toggleItem);
+    let r=await sb.from('bread_items').update({active:!i.active,updated_at:new Date().toISOString()}).eq('id',i.id);
+    if(r.error)return alert(r.error.message);refresh();
+  });
+  const manage=$('manageItems');if(manage)manage.onclick=()=>{route='items';render()};
+}
+function render(){
+  document.querySelectorAll('[data-route]').forEach(b=>b.classList.toggle('active',b.dataset.route===route));
+  const list=activeOrders();
+  $('fab').classList.toggle('hidden',route==='items'&&!canManageItems());
+  if(route==='today'){
+    let today=list.filter(o=>o.order_date===d()),over=list.filter(o=>o.order_date<d()),tom=list.filter(o=>o.order_date===d(1));
+    $('title').textContent='Today';
+    $('view').innerHTML=`<div class="hero"><h2>Today</h2><div class="metrics"><div class="metric"><strong>${today.length}</strong>Today</div><div class="metric"><strong>${over.length}</strong>Overdue</div><div class="metric"><strong>${tom.length}</strong>Tomorrow</div></div><div class="quick"><button id="manageItems" class="secondary">Manage items · ${activeItems().length}</button></div></div><div class="section"><h2>Orders</h2><span class="muted">${today.length}</span></div><div class="stack">${today.map(orderCard).join('')||'<div class="card muted empty">No orders today.</div>'}</div>`;
+  }else if(route==='upcoming'){
+    let x=list.filter(o=>o.order_date>d()).sort((a,b)=>a.order_date.localeCompare(b.order_date));
+    $('title').textContent='Upcoming';
+    $('view').innerHTML='<div class="stack">'+(x.map(orderCard).join('')||'<div class="card muted empty">No upcoming orders.</div>')+'</div>';
+  }else if(route==='regular'){
+    let x=list.filter(o=>o.order_type==='regular');
+    $('title').textContent='Regular';
+    $('view').innerHTML='<div class="stack">'+(x.map(orderCard).join('')||'<div class="card muted empty">No regular orders.</div>')+'</div>';
+  }else{
+    $('title').textContent='Items';
+    const activeCount=activeItems().length;
+    $('view').innerHTML=`<div class="hero"><h2>Item catalogue</h2><p style="margin-top:6px;opacity:.8">Add the breads/products you take orders for.</p><div class="metrics"><div class="metric"><strong>${items.length}</strong>Total</div><div class="metric"><strong>${activeCount}</strong>Active</div><div class="metric"><strong>${items.length-activeCount}</strong>Inactive</div></div></div><div class="section"><h2>Saved items</h2><span class="muted">${canManageItems()?'Tap + to add':'View only'}</span></div><div class="stack">${items.map(itemCard).join('')||'<div class="card muted empty">No items yet. Tap + to add your first one.</div>'}</div>`;
+  }
+  wire();
+}
+function openNew(){
+  const choices=activeItems();
+  if(!choices.length){
+    if(canManageItems()){route='items';render();alert('Add at least one active item first.');}
+    else alert('No active items are available yet.');
+    return;
+  }
+  let type='one_time';
+  $('modal').classList.remove('hidden');
+  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>New bread order</h2><button id="close" class="secondary">Close</button></div><form id="orderForm" class="form" style="margin-top:14px"><input id="name" placeholder="Customer name" required><input id="phone" placeholder="Phone number"><select id="itemSelect" required><option value="">Select item</option>${choices.map(i=>'<option value="'+i.id+'">'+esc(i.brand)+' — '+esc(i.name)+'</option>').join('')}</select><div class="two"><input id="qty" type="number" min="1" value="1" required><input id="date" type="date" value="${d(1)}" required></div><div class="seg"><button type="button" id="one" class="secondary active">One-time</button><button type="button" id="reg" class="secondary">Regular weekly</button></div><button class="primary">Add order</button></form></div>`;
+  $('close').onclick=()=>$('modal').classList.add('hidden');
+  $('one').onclick=()=>{type='one_time';$('one').classList.add('active');$('reg').classList.remove('active')};
+  $('reg').onclick=()=>{type='regular';$('reg').classList.add('active');$('one').classList.remove('active')};
+  $('orderForm').onsubmit=async e=>{
+    e.preventDefault();
+    const item=items.find(i=>i.id===$('itemSelect').value);
+    if(!item)return alert('Please select an item.');
+    let payload={store_id:storeId,customer_name:$('name').value.trim(),phone:$('phone').value.trim()||null,brand:item.brand,bread_type:item.name,quantity:Number($('qty').value),order_date:$('date').value,order_type:type,status:'pending',created_by:session.user.id,updated_at:new Date().toISOString()};
+    let r=await sb.from('bread_orders_simple').insert(payload);
+    if(r.error)return alert(r.error.message);
+    $('modal').classList.add('hidden');refresh();
+  };
+}
+function openItem(){
+  if(!canManageItems())return;
+  $('modal').classList.remove('hidden');
+  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Add item</h2><button id="close" class="secondary">Close</button></div><form id="itemForm" class="form" style="margin-top:14px"><input id="itemBrand" placeholder="Brand, e.g. Abbott's" required><input id="itemName" placeholder="Item name, e.g. Wholemeal Bread" required><button class="primary">Save item</button></form></div>`;
+  $('close').onclick=()=>$('modal').classList.add('hidden');
+  $('itemForm').onsubmit=async e=>{
+    e.preventDefault();
+    const payload={store_id:storeId,brand:$('itemBrand').value.trim(),name:$('itemName').value.trim(),active:true,created_by:session.user.id,updated_at:new Date().toISOString()};
+    let r=await sb.from('bread_items').insert(payload);
+    if(r.error){
+      if(r.error.code==='23505')return alert('That item already exists.');
+      return alert(r.error.message);
+    }
+    $('modal').classList.add('hidden');refresh();
+  };
+}
 let authMode='signin';
-function setAuthMode(mode){authMode=mode;const create=mode==='signup';$('displayName').classList.toggle('hidden',!create);$('displayName').required=create;$('authSubmit').textContent=create?'Create admin account':'Sign in';$('authToggle').textContent=create?'Back to sign in':'Create first admin account';$('authHelp').textContent=create?'Use this only for the first shop administrator.':'Sign in with your staff account.';$('authErr').textContent=''}
+function setAuthMode(mode){
+  authMode=mode;const create=mode==='signup';
+  $('displayName').classList.toggle('hidden',!create);$('displayName').required=create;
+  $('authSubmit').textContent=create?'Create admin account':'Sign in';
+  $('authToggle').textContent=create?'Back to sign in':'Create first admin account';
+  $('authHelp').textContent=create?'Use this only for the first shop administrator.':'Sign in with your staff account.';
+  $('authErr').textContent='';
+}
 $('authToggle').onclick=()=>setAuthMode(authMode==='signin'?'signup':'signin');
-$('authForm').onsubmit=async e=>{e.preventDefault();$('authErr').textContent='';if(authMode==='signup'){let r=await sb.auth.signUp({email:$('email').value.trim(),password:$('password').value});if(r.error)return $('authErr').textContent=r.error.message;session=r.data.session;if(!session){$('authErr').textContent='Account created. Check your email if confirmation is required, then sign in.';setAuthMode('signin');return}let b=await sb.rpc('bootstrap_first_admin',{p_display_name:$('displayName').value.trim()||'Admin'});if(b.error){$('authErr').textContent=b.error.message;await sb.auth.signOut();return}await enter();return}
-let r=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(r.error)return $('authErr').textContent=r.error.message;session=r.data.session;await enter()}
-async function enter(){let p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();if(p.error)return $('authErr').textContent=p.error.message;if(!p.data){let boot=await sb.rpc('bootstrap_first_admin',{p_display_name:(session.user.email||'Admin').split('@')[0]});if(!boot.error){p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle()}if(!p.data){let a=await sb.rpc('accept_staff_invite');if(!a.error){p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle()}if((boot.error&&boot.error.message!=='Admin bootstrap is closed')||a.error||!p.data){$('authErr').textContent='Access unavailable. Your email has not been authorised by the store owner.';await sb.auth.signOut();return}}}storeId=p.data.store_id;$('auth').classList.add('hidden');$('app').classList.remove('hidden');refresh()}
-$('signout').onclick=async()=>{await sb.auth.signOut();location.reload()};$('fab').onclick=openNew;document.querySelectorAll('[data-route]').forEach(b=>b.onclick=()=>{route=b.dataset.route;render()});(async()=>{let s=await sb.auth.getSession();session=s.data.session;if(session)enter()})()
+$('authForm').onsubmit=async e=>{
+  e.preventDefault();$('authErr').textContent='';
+  if(authMode==='signup'){
+    let r=await sb.auth.signUp({email:$('email').value.trim(),password:$('password').value});
+    if(r.error)return $('authErr').textContent=r.error.message;
+    session=r.data.session;
+    if(!session){
+      $('authErr').textContent='Account created. Check your email if confirmation is required, then sign in.';
+      setAuthMode('signin');return;
+    }
+    let b=await sb.rpc('bootstrap_first_admin',{p_display_name:$('displayName').value.trim()||'Admin'});
+    if(b.error){$('authErr').textContent=b.error.message;await sb.auth.signOut();return}
+    await enter();return;
+  }
+  let r=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+  if(r.error)return $('authErr').textContent=r.error.message;
+  session=r.data.session;await enter();
+};
+async function enter(){
+  let p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();
+  if(p.error)return $('authErr').textContent=p.error.message;
+  if(!p.data){
+    let boot=await sb.rpc('bootstrap_first_admin',{p_display_name:(session.user.email||'Admin').split('@')[0]});
+    if(!boot.error)p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();
+    if(!p.data){
+      let a=await sb.rpc('accept_staff_invite');
+      if(!a.error)p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();
+      if((boot.error&&boot.error.message!=='Admin bootstrap is closed')||a.error||!p.data){
+        $('authErr').textContent='Access unavailable. Your email has not been authorised by the store owner.';
+        await sb.auth.signOut();return;
+      }
+    }
+  }
+  profile=p.data;storeId=profile.store_id;
+  $('auth').classList.add('hidden');$('app').classList.remove('hidden');refresh();
+}
+$('signout').onclick=async()=>{await sb.auth.signOut();location.reload()};
+$('fab').onclick=()=>route==='items'?openItem():openNew();
+document.querySelectorAll('[data-route]').forEach(b=>b.onclick=()=>{route=b.dataset.route;render()});
+(async()=>{let s=await sb.auth.getSession();session=s.data.session;if(session)enter()})();
 </script>
 </body>
 </html>
