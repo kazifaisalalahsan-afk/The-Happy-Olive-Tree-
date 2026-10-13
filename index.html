@@ -21,7 +21,7 @@ input,select{width:100%;border:1px solid #cfd7d2;background:#fff;border-radius:1
 .nav button{border:0;background:none;padding:10px 4px;border-radius:10px;font-size:.82rem}.nav button.active{background:var(--soft);font-weight:800}.fab{position:fixed;right:20px;bottom:84px;width:58px;height:58px;border:0;border-radius:18px;background:var(--green);color:#fff;font-size:1.8rem;z-index:6}
 .modal{position:fixed;inset:0;background:#0007;display:grid;place-items:end center;z-index:20}.sheet{width:min(720px,100%);background:#fff;border-radius:22px 22px 0 0;padding:18px 16px 28px;max-height:94dvh;overflow:auto}
 .form{display:grid;gap:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.seg{display:grid;grid-template-columns:1fr 1fr;gap:5px}.seg button.active{background:var(--green);color:white}
-.empty{text-align:center;padding:24px 16px}.item-title{display:flex;gap:8px;align-items:center}.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.empty{text-align:center;padding:24px 16px}.item-title{display:flex;gap:8px;align-items:center}.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.brand-group{display:grid;gap:8px;margin:16px 0 20px}.brand-head{display:flex;justify-content:space-between;align-items:center;padding:0 2px}.brand-head h3{font-size:1rem}.field-label{font-size:.76rem;font-weight:800;color:var(--muted);margin:2px 2px -4px}
 @media(max-width:430px){.two{grid-template-columns:1fr}.metrics{gap:6px}.metric{padding:9px 7px}.nav button{font-size:.75rem}}
 </style>
 </head>
@@ -69,6 +69,14 @@ function nice(s){let [y,m,x]=s.split('-').map(Number);return new Intl.DateTimeFo
 function add7(s){let x=new Date(s+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+7);return x.toISOString().slice(0,10)}
 function activeOrders(){return orders.filter(o=>!['collected','cancelled'].includes(o.status))}
 function activeItems(){return items.filter(i=>i.active)}
+function brands(activeOnly=false){
+  const src=activeOnly?activeItems():items;
+  return [...new Set(src.map(i=>i.brand).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+}
+function itemsForBrand(brand,activeOnly=false){
+  const src=activeOnly?activeItems():items;
+  return src.filter(i=>i.brand===brand).sort((a,b)=>a.name.localeCompare(b.name));
+}
 function canManageItems(){return profile&&['admin','manager'].includes(profile.role)}
 async function refresh(){
   const [or,ir]=await Promise.all([
@@ -128,7 +136,8 @@ function render(){
   }else{
     $('title').textContent='Items';
     const activeCount=activeItems().length;
-    $('view').innerHTML=`<div class="hero"><h2>Item catalogue</h2><p style="margin-top:6px;opacity:.8">Add the breads/products you take orders for.</p><div class="metrics"><div class="metric"><strong>${items.length}</strong>Total</div><div class="metric"><strong>${activeCount}</strong>Active</div><div class="metric"><strong>${items.length-activeCount}</strong>Inactive</div></div></div><div class="section"><h2>Saved items</h2><span class="muted">${canManageItems()?'Tap + to add':'View only'}</span></div><div class="stack">${items.map(itemCard).join('')||'<div class="card muted empty">No items yet. Tap + to add your first one.</div>'}</div>`;
+    const grouped=brands().map(brand=>`<section class="brand-group"><div class="brand-head"><h3>${esc(brand)}</h3><span class="muted">${itemsForBrand(brand).length} item${itemsForBrand(brand).length===1?'':'s'}</span></div><div class="stack">${itemsForBrand(brand).map(itemCard).join('')}</div></section>`).join('');
+    $('view').innerHTML=`<div class="hero"><h2>Item catalogue</h2><p style="margin-top:6px;opacity:.8">Breads are grouped by brand for quicker browsing.</p><div class="metrics"><div class="metric"><strong>${items.length}</strong>Total</div><div class="metric"><strong>${activeCount}</strong>Active</div><div class="metric"><strong>${brands().length}</strong>Brands</div></div></div><div class="section"><h2>Saved items</h2><span class="muted">${canManageItems()?'Tap + to add':'View only'}</span></div>${grouped||'<div class="card muted empty">No items yet. Tap + to add your first one.</div>'}`;
   }
   wire();
 }
@@ -140,15 +149,24 @@ function openNew(){
     return;
   }
   let type='one_time';
+  const brandOptions=brands(true).map(b=>'<option value="'+esc(b)+'">'+esc(b)+'</option>').join('');
   $('modal').classList.remove('hidden');
-  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>New bread order</h2><button id="close" class="secondary">Close</button></div><form id="orderForm" class="form" style="margin-top:14px"><input id="name" placeholder="Customer name" required><input id="phone" placeholder="Phone number"><select id="itemSelect" required><option value="">Select item</option>${choices.map(i=>'<option value="'+i.id+'">'+esc(i.brand)+' — '+esc(i.name)+'</option>').join('')}</select><div class="two"><input id="qty" type="number" min="1" value="1" required><input id="date" type="date" value="${d(1)}" required></div><div class="seg"><button type="button" id="one" class="secondary active">One-time</button><button type="button" id="reg" class="secondary">Regular weekly</button></div><button class="primary">Add order</button></form></div>`;
+  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>New bread order</h2><button id="close" class="secondary">Close</button></div><form id="orderForm" class="form" style="margin-top:14px"><input id="name" placeholder="Customer name" required><input id="phone" placeholder="Phone number"><label class="field-label" for="brandSelect">Brand</label><select id="brandSelect" required><option value="">Select brand</option>${brandOptions}</select><label class="field-label" for="itemSelect">Bread</label><select id="itemSelect" required disabled><option value="">Select a brand first</option></select><div class="two"><input id="qty" type="number" min="1" value="1" required><input id="date" type="date" value="${d(1)}" required></div><div class="seg"><button type="button" id="one" class="secondary active">One-time</button><button type="button" id="reg" class="secondary">Regular weekly</button></div><button class="primary">Add order</button></form></div>`;
   $('close').onclick=()=>$('modal').classList.add('hidden');
+  $('brandSelect').onchange=()=>{
+    const brand=$('brandSelect').value;
+    const bread=$('itemSelect');
+    if(!brand){bread.innerHTML='<option value="">Select a brand first</option>';bread.disabled=true;return;}
+    const filtered=itemsForBrand(brand,true);
+    bread.innerHTML='<option value="">Select bread</option>'+filtered.map(i=>'<option value="'+i.id+'">'+esc(i.name)+'</option>').join('');
+    bread.disabled=false;
+  };
   $('one').onclick=()=>{type='one_time';$('one').classList.add('active');$('reg').classList.remove('active')};
   $('reg').onclick=()=>{type='regular';$('reg').classList.add('active');$('one').classList.remove('active')};
   $('orderForm').onsubmit=async e=>{
     e.preventDefault();
     const item=items.find(i=>i.id===$('itemSelect').value);
-    if(!item)return alert('Please select an item.');
+    if(!item)return alert('Please select a bread.');
     let payload={store_id:storeId,customer_name:$('name').value.trim(),phone:$('phone').value.trim()||null,brand:item.brand,bread_type:item.name,quantity:Number($('qty').value),order_date:$('date').value,order_type:type,status:'pending',created_by:session.user.id,updated_at:new Date().toISOString()};
     let r=await sb.from('bread_orders_simple').insert(payload);
     if(r.error)return alert(r.error.message);
@@ -157,12 +175,20 @@ function openNew(){
 }
 function openItem(){
   if(!canManageItems())return;
+  const options=brands().map(b=>'<option value="'+esc(b)+'">'+esc(b)+'</option>').join('');
   $('modal').classList.remove('hidden');
-  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Add item</h2><button id="close" class="secondary">Close</button></div><form id="itemForm" class="form" style="margin-top:14px"><input id="itemBrand" placeholder="Brand, e.g. Abbott's" required><input id="itemName" placeholder="Item name, e.g. Wholemeal Bread" required><button class="primary">Save item</button></form></div>`;
+  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Add item</h2><button id="close" class="secondary">Close</button></div><form id="itemForm" class="form" style="margin-top:14px"><label class="field-label" for="brandChoice">Brand</label><select id="brandChoice" required><option value="">Select brand</option>${options}<option value="__new__">+ Add new brand…</option></select><input id="newBrand" class="hidden" placeholder="New brand name"><label class="field-label" for="itemName">Bread</label><input id="itemName" placeholder="e.g. Wholemeal Bread" required><button class="primary">Save item</button></form></div>`;
   $('close').onclick=()=>$('modal').classList.add('hidden');
+  $('brandChoice').onchange=()=>{
+    const isNew=$('brandChoice').value==='__new__';
+    $('newBrand').classList.toggle('hidden',!isNew);
+    $('newBrand').required=isNew;
+  };
   $('itemForm').onsubmit=async e=>{
     e.preventDefault();
-    const payload={store_id:storeId,brand:$('itemBrand').value.trim(),name:$('itemName').value.trim(),active:true,created_by:session.user.id,updated_at:new Date().toISOString()};
+    const brand=$('brandChoice').value==='__new__'?$('newBrand').value.trim():$('brandChoice').value;
+    if(!brand)return alert('Please select or add a brand.');
+    const payload={store_id:storeId,brand,name:$('itemName').value.trim(),active:true,created_by:session.user.id,updated_at:new Date().toISOString()};
     let r=await sb.from('bread_items').insert(payload);
     if(r.error){
       if(r.error.code==='23505')return alert('That item already exists.');
@@ -173,17 +199,23 @@ function openItem(){
 }
 function openEditItem(item){
   if(!canManageItems()||!item)return;
+  const options=brands().map(b=>'<option value="'+esc(b)+'" '+(b===item.brand?'selected':'')+'>'+esc(b)+'</option>').join('');
   $('modal').classList.remove('hidden');
-  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Edit item</h2><button id="close" class="secondary">Close</button></div><form id="editItemForm" class="form" style="margin-top:14px"><input id="editItemBrand" placeholder="Brand" value="${esc(item.brand)}" required><input id="editItemName" placeholder="Item name" value="${esc(item.name)}" required><button class="primary">Save changes</button></form></div>`;
+  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Edit item</h2><button id="close" class="secondary">Close</button></div><form id="editItemForm" class="form" style="margin-top:14px"><label class="field-label" for="editBrandChoice">Brand</label><select id="editBrandChoice" required>${options}<option value="__new__">+ Add new brand…</option></select><input id="editNewBrand" class="hidden" placeholder="New brand name"><label class="field-label" for="editItemName">Bread</label><input id="editItemName" placeholder="Bread name" value="${esc(item.name)}" required><button class="primary">Save changes</button></form></div>`;
   $('close').onclick=()=>$('modal').classList.add('hidden');
+  $('editBrandChoice').onchange=()=>{
+    const isNew=$('editBrandChoice').value==='__new__';
+    $('editNewBrand').classList.toggle('hidden',!isNew);
+    $('editNewBrand').required=isNew;
+  };
   $('editItemForm').onsubmit=async e=>{
     e.preventDefault();
-    const brand=$('editItemBrand').value.trim();
+    const brand=$('editBrandChoice').value==='__new__'?$('editNewBrand').value.trim():$('editBrandChoice').value;
     const name=$('editItemName').value.trim();
-    if(!brand||!name)return alert('Brand and item name are required.');
+    if(!brand||!name)return alert('Brand and bread name are required.');
     let r=await sb.from('bread_items').update({brand,name,updated_at:new Date().toISOString()}).eq('id',item.id);
     if(r.error){
-      if(r.error.code==='23505')return alert('An item with that brand and name already exists.');
+      if(r.error.code==='23505')return alert('An item with that brand and bread name already exists.');
       return alert(r.error.message);
     }
     $('modal').classList.add('hidden');refresh();
