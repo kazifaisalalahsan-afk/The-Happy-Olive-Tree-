@@ -124,7 +124,7 @@ function render(){
   }else if(route==='regular'){
     let x=activeCustomers().filter(c=>c.is_regular);
     $('title').textContent='Regular';
-    $('view').innerHTML=`<div class="hero"><h2>Regular customers</h2><p style="margin-top:6px;opacity:.8">Patterns identified from the order book. Use Order to prefill a new order.</p><div class="metrics"><div class="metric"><strong>${x.length}</strong>Regular</div><div class="metric"><strong>${x.filter(c=>c.regular_day).length}</strong>Scheduled</div><div class="metric"><strong>${x.filter(c=>c.phone).length}</strong>With phone</div></div></div><div class="stack">${x.map(c=>customerCard(c,true)).join('')||'<div class="card muted empty">No regular customers yet.</div>'}</div>`;
+    $('view').innerHTML=`<div class="hero"><h2>Regular customers</h2><p style="margin-top:6px;opacity:.8">Patterns identified from the order book. Use Order to prefill a new order.</p><div class="metrics"><div class="metric"><strong>${x.length}</strong>Regular</div><div class="metric"><strong>${x.filter(c=>c.regular_day).length}</strong>Scheduled</div><div class="metric"><strong>${x.filter(c=>c.phone).length}</strong>With phone</div></div></div><div class="stack">${x.map(c=>customerCard(c,false)).join('')||'<div class="card muted empty">No regular customers yet.</div>'}</div>`;
   }else if(route==='customers'){
     $('title').textContent='Customers';
     const regularCount=activeCustomers().filter(c=>c.is_regular).length, phoneCount=activeCustomers().filter(c=>c.phone).length;
