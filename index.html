@@ -8,21 +8,21 @@
 <style>
 :root{--bg:#f7f7f2;--card:#fff;--text:#202824;--muted:#748078;--line:#e1e6e2;--green:#17352c;--soft:#eef1ea;--red:#a33a32;--amber:#8b641c}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.center{min-height:100dvh;display:grid;place-items:center;padding:20px}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}.center{min-height:100dvh;display:grid;place-items:center;padding:20px}
 .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}.auth{width:min(420px,100%);display:grid;gap:12px}
-input,select{width:100%;border:1px solid #cfd7d2;background:#fff;border-radius:13px;padding:12px}.primary{border:0;background:var(--green);color:#fff;border-radius:13px;padding:12px 15px;font-weight:800}
-.secondary{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 11px;font-weight:700}.danger{color:var(--red)}
-.shell{max-width:720px;margin:auto;padding-bottom:92px}.top{position:sticky;top:0;background:#f7f7f2ee;backdrop-filter:blur(10px);padding:15px;display:flex;justify-content:space-between;z-index:4}
+input,select,textarea{width:100%;border:1px solid #cfd7d2;background:#fff;border-radius:13px;padding:12px}textarea{min-height:82px;resize:vertical}
+.primary{border:0;background:var(--green);color:#fff;border-radius:13px;padding:12px 15px;font-weight:800}.secondary{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 11px;font-weight:700}.danger{color:var(--red)}
+.shell{max-width:720px;margin:auto;padding-bottom:94px}.top{position:sticky;top:0;background:#f7f7f2ee;backdrop-filter:blur(10px);padding:15px;display:flex;justify-content:space-between;z-index:4}
 .view{padding:0 14px 24px}.brand{font-size:.72rem;font-weight:900;letter-spacing:.11em;color:#7b865d}h1,h2,h3,p{margin:0}.muted{color:var(--muted);font-size:.82rem}
 .hero{background:var(--green);color:#fff;border-radius:20px;padding:16px;margin-bottom:14px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.metric{background:#ffffff17;border-radius:13px;padding:10px}.metric strong{display:block;font-size:1.45rem}
-.stack{display:grid;gap:10px}.section{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 8px}.order,.item{display:grid;gap:8px}.row{display:flex;justify-content:space-between;gap:8px;align-items:center}
-.line{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px}.badge{font-size:.7rem;font-weight:800;background:var(--soft);padding:5px 8px;border-radius:999px}.badge.red{background:#fbeceb;color:var(--red)}.badge.off{background:#f4eee1;color:var(--amber)}
-.actions{display:flex;gap:7px;flex-wrap:wrap}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:white;border-top:1px solid var(--line);padding:8px;z-index:5}
-.nav button{border:0;background:none;padding:10px 4px;border-radius:10px;font-size:.82rem}.nav button.active{background:var(--soft);font-weight:800}.fab{position:fixed;right:20px;bottom:84px;width:58px;height:58px;border:0;border-radius:18px;background:var(--green);color:#fff;font-size:1.8rem;z-index:6}
+.stack{display:grid;gap:10px}.section{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 8px}.order,.item,.customer{display:grid;gap:8px}.row{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.line{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px}.badge{font-size:.7rem;font-weight:800;background:var(--soft);padding:5px 8px;border-radius:999px}.badge.red{background:#fbeceb;color:var(--red)}.badge.off{background:#f4eee1;color:var(--amber)}.badge.green{background:#e8f1ec;color:var(--green)}
+.actions{display:flex;gap:7px;flex-wrap:wrap}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:white;border-top:1px solid var(--line);padding:8px 5px;z-index:5}
+.nav button{border:0;background:none;padding:10px 2px;border-radius:10px;font-size:.76rem}.nav button.active{background:var(--soft);font-weight:800}.fab{position:fixed;right:20px;bottom:84px;width:58px;height:58px;border:0;border-radius:18px;background:var(--green);color:#fff;font-size:1.8rem;z-index:6}
 .modal{position:fixed;inset:0;background:#0007;display:grid;place-items:end center;z-index:20}.sheet{width:min(720px,100%);background:#fff;border-radius:22px 22px 0 0;padding:18px 16px 28px;max-height:94dvh;overflow:auto}
 .form{display:grid;gap:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.seg{display:grid;grid-template-columns:1fr 1fr;gap:5px}.seg button.active{background:var(--green);color:white}
-.empty{text-align:center;padding:24px 16px}.item-title{display:flex;gap:8px;align-items:center}.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.brand-group{display:grid;gap:8px;margin:16px 0 20px}.brand-head{display:flex;justify-content:space-between;align-items:center;padding:0 2px}.brand-head h3{font-size:1rem}.field-label{font-size:.76rem;font-weight:800;color:var(--muted);margin:2px 2px -4px}
-@media(max-width:430px){.two{grid-template-columns:1fr}.metrics{gap:6px}.metric{padding:9px 7px}.nav button{font-size:.75rem}}
+.empty{text-align:center;padding:24px 16px}.item-title,.customer-title{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.brand-group{display:grid;gap:8px;margin:16px 0 20px}.brand-head{display:flex;justify-content:space-between;align-items:center;padding:0 2px}.brand-head h3{font-size:1rem}.field-label{font-size:.76rem;font-weight:800;color:var(--muted);margin:2px 2px -4px}.search{margin-bottom:12px}.checkrow{display:flex;align-items:center;gap:9px}.checkrow input{width:auto}.customer-meta{display:grid;gap:3px}.customer-notes{font-size:.85rem;line-height:1.35}.regular-box{background:var(--soft);border-radius:12px;padding:10px;font-size:.82rem}
+@media(max-width:430px){.two{grid-template-columns:1fr}.metrics{gap:6px}.metric{padding:9px 7px}.nav button{font-size:.68rem}.actions{gap:5px}}
 </style>
 </head>
 <body>
@@ -39,29 +39,25 @@ input,select{width:100%;border:1px solid #cfd7d2;background:#fff;border-radius:1
     <button id="authToggle" type="button" class="secondary">Create first admin account</button>
   </form>
 </div>
-
 <div id="app" class="shell hidden">
-  <header class="top">
-    <div><div class="brand">BREAD ORDERS</div><h1 id="title">Today</h1></div>
-    <button id="signout" class="secondary">Sign out</button>
-  </header>
+  <header class="top"><div><div class="brand">BREAD ORDERS</div><h1 id="title">Today</h1></div><button id="signout" class="secondary">Sign out</button></header>
   <main id="view" class="view"></main>
   <button id="fab" class="fab" aria-label="Add">+</button>
   <nav class="nav">
     <button data-route="today" class="active">Today</button>
     <button data-route="upcoming">Upcoming</button>
     <button data-route="regular">Regular</button>
+    <button data-route="customers">Customers</button>
     <button data-route="items">Items</button>
   </nav>
 </div>
 <div id="modal" class="modal hidden"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL='https://encmdeinctvjhdiedjfu.supabase.co';
 const SUPABASE_KEY='sb_publishable_jwlX0Y-7M_D0CHZEzwbrow_E8yJ07oT';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true}});
-let session=null,profile=null,storeId=null,orders=[],items=[],route='today';
+let session=null,profile=null,storeId=null,orders=[],items=[],customers=[],route='today',customerSearch='';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function d(off=0){let x=new Date();x.setDate(x.getDate()+off);return new Intl.DateTimeFormat('en-CA',{timeZone:'Australia/Melbourne',year:'numeric',month:'2-digit',day:'2-digit'}).format(x)}
@@ -69,207 +65,140 @@ function nice(s){let [y,m,x]=s.split('-').map(Number);return new Intl.DateTimeFo
 function add7(s){let x=new Date(s+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+7);return x.toISOString().slice(0,10)}
 function activeOrders(){return orders.filter(o=>!['collected','cancelled'].includes(o.status))}
 function activeItems(){return items.filter(i=>i.active)}
-function brands(activeOnly=false){
-  const src=activeOnly?activeItems():items;
-  return [...new Set(src.map(i=>i.brand).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
-}
-function itemsForBrand(brand,activeOnly=false){
-  const src=activeOnly?activeItems():items;
-  return src.filter(i=>i.brand===brand).sort((a,b)=>a.name.localeCompare(b.name));
-}
-function canManageItems(){return profile&&['admin','manager'].includes(profile.role)}
+function activeCustomers(){return customers.filter(c=>c.active!==false)}
+function brands(activeOnly=false){const src=activeOnly?activeItems():items;return [...new Set(src.map(i=>i.brand).filter(Boolean))].sort((a,b)=>a.localeCompare(b))}
+function itemsForBrand(brand,activeOnly=false){const src=activeOnly?activeItems():items;return src.filter(i=>i.brand===brand).sort((a,b)=>a.name.localeCompare(b.name))}
+function canManage(){return profile&&['admin','manager'].includes(profile.role)}
 async function refresh(){
-  const [or,ir]=await Promise.all([
+  const [or,ir,cr]=await Promise.all([
     sb.from('bread_orders_simple').select('*').eq('store_id',storeId).order('order_date'),
-    sb.from('bread_items').select('*').eq('store_id',storeId).order('brand').order('name')
+    sb.from('bread_items').select('*').eq('store_id',storeId).order('brand').order('name'),
+    sb.from('customers').select('*').eq('store_id',storeId).order('name')
   ]);
-  if(or.error)return alert(or.error.message);
-  if(ir.error)return alert(ir.error.message);
-  orders=or.data||[];items=ir.data||[];render();
+  if(or.error)return alert(or.error.message);if(ir.error)return alert(ir.error.message);if(cr.error)return alert(cr.error.message);
+  orders=or.data||[];items=ir.data||[];customers=cr.data||[];render();
 }
 function orderCard(o){
   let overdue=o.order_date<d()&&!['collected','cancelled'].includes(o.status);
-  return `<div class="card order"><div class="row"><div><strong>${esc(o.customer_name)}</strong><div class="muted">${nice(o.order_date)} · ${esc(o.phone||'No phone')}</div></div><span class="badge ${overdue?'red':''}">${overdue?'OVERDUE':o.order_type==='regular'?'WEEKLY':o.status.toUpperCase()}</span></div><div class="line"><span>${esc(o.brand)} · ${esc(o.bread_type)}</span><strong>× ${o.quantity}</strong></div><div class="actions"><button class="secondary" data-ready="${o.id}">Ready</button><button class="primary" data-collected="${o.id}">Collected</button></div></div>`
+  return `<div class="card order"><div class="row"><div><strong>${esc(o.customer_name)}</strong><div class="muted">${nice(o.order_date)} · ${esc(o.phone||'No phone')}</div></div><span class="badge ${overdue?'red':''}">${overdue?'OVERDUE':o.status.toUpperCase()}</span></div><div class="line"><span>${esc(o.brand)} · ${esc(o.bread_type)}</span><strong>× ${o.quantity}</strong></div><div class="actions"><button class="secondary" data-ready="${o.id}">Ready</button><button class="primary" data-collected="${o.id}">Collected</button></div></div>`
 }
 function itemCard(i){
-  return `<div class="card item"><div class="row"><div><div class="item-title"><strong>${esc(i.name)}</strong><span class="badge ${i.active?'':'off'}">${i.active?'ACTIVE':'INACTIVE'}</span></div><div class="muted">${esc(i.brand)}</div></div>${canManageItems()?'<div class="actions"><button class="secondary" data-edit-item="'+i.id+'">Edit</button><button class="secondary" data-toggle-item="'+i.id+'">'+(i.active?'Deactivate':'Activate')+'</button></div>':''}</div></div>`
+  return `<div class="card item"><div class="row"><div><div class="item-title"><strong>${esc(i.name)}</strong><span class="badge ${i.active?'':'off'}">${i.active?'ACTIVE':'INACTIVE'}</span></div><div class="muted">${esc(i.brand)}</div></div>${canManage()?'<div class="actions"><button class="secondary" data-edit-item="'+i.id+'">Edit</button><button class="secondary" data-toggle-item="'+i.id+'">'+(i.active?'Deactivate':'Activate')+'</button></div>':''}</div></div>`
+}
+function customerCard(c,compact=false){
+  const regular=c.is_regular?'<span class="badge green">REGULAR</span>':'';
+  const inactive=c.active===false?'<span class="badge off">INACTIVE</span>':'';
+  const cadence=c.is_regular?[c.regular_day,c.regular_frequency_weeks?(c.regular_frequency_weeks===1?'weekly':'every '+c.regular_frequency_weeks+' weeks'):null].filter(Boolean).join(' · '):'';
+  return `<div class="card customer"><div class="row"><div class="customer-meta"><div class="customer-title"><strong>${esc(c.name)}</strong>${regular}${inactive}</div><div class="muted">${esc(c.phone||'No phone saved')}</div></div><div class="actions">${!compact?'<button class="secondary" data-order-customer="'+c.id+'">Order</button>':''}${canManage()?'<button class="secondary" data-edit-customer="'+c.id+'">Edit</button>':''}</div></div>${c.is_regular?'<div class="regular-box"><strong>'+esc(cadence||'Regular customer')+'</strong>'+(c.regular_notes?'<div style="margin-top:4px">'+esc(c.regular_notes)+'</div>':'')+'</div>':''}${c.notes&&!compact?'<div class="customer-notes muted">'+esc(c.notes)+'</div>':''}</div>`
 }
 function wire(){
-  document.querySelectorAll('[data-ready]').forEach(b=>b.onclick=async()=>{
-    let r=await sb.from('bread_orders_simple').update({status:'ready',updated_at:new Date().toISOString()}).eq('id',b.dataset.ready);
-    if(r.error)return alert(r.error.message);refresh();
-  });
-  document.querySelectorAll('[data-collected]').forEach(b=>b.onclick=async()=>{
-    let o=orders.find(x=>x.id===b.dataset.collected);
-    let patch=o.order_type==='regular'?{status:'pending',order_date:add7(o.order_date)}:{status:'collected'};
-    patch.updated_at=new Date().toISOString();patch.last_collected_at=new Date().toISOString();
-    let r=await sb.from('bread_orders_simple').update(patch).eq('id',o.id);
-    if(r.error)return alert(r.error.message);refresh();
-  });
-  document.querySelectorAll('[data-edit-item]').forEach(b=>b.onclick=()=>{
-    let i=items.find(x=>x.id===b.dataset.editItem);
-    if(i)openEditItem(i);
-  });
-  document.querySelectorAll('[data-toggle-item]').forEach(b=>b.onclick=async()=>{
-    let i=items.find(x=>x.id===b.dataset.toggleItem);
-    let r=await sb.from('bread_items').update({active:!i.active,updated_at:new Date().toISOString()}).eq('id',i.id);
-    if(r.error)return alert(r.error.message);refresh();
-  });
-  const manage=$('manageItems');if(manage)manage.onclick=()=>{route='items';render()};
+  document.querySelectorAll('[data-ready]').forEach(b=>b.onclick=async()=>{let r=await sb.from('bread_orders_simple').update({status:'ready',updated_at:new Date().toISOString()}).eq('id',b.dataset.ready);if(r.error)return alert(r.error.message);refresh()});
+  document.querySelectorAll('[data-collected]').forEach(b=>b.onclick=async()=>{let o=orders.find(x=>x.id===b.dataset.collected);let patch=o.order_type==='regular'?{status:'pending',order_date:add7(o.order_date)}:{status:'collected'};patch.updated_at=new Date().toISOString();patch.last_collected_at=new Date().toISOString();let r=await sb.from('bread_orders_simple').update(patch).eq('id',o.id);if(r.error)return alert(r.error.message);refresh()});
+  document.querySelectorAll('[data-edit-item]').forEach(b=>b.onclick=()=>{let i=items.find(x=>x.id===b.dataset.editItem);if(i)openEditItem(i)});
+  document.querySelectorAll('[data-toggle-item]').forEach(b=>b.onclick=async()=>{let i=items.find(x=>x.id===b.dataset.toggleItem);let r=await sb.from('bread_items').update({active:!i.active,updated_at:new Date().toISOString()}).eq('id',i.id);if(r.error)return alert(r.error.message);refresh()});
+  document.querySelectorAll('[data-edit-customer]').forEach(b=>b.onclick=()=>{let c=customers.find(x=>x.id===b.dataset.editCustomer);if(c)openCustomer(c)});
+  document.querySelectorAll('[data-order-customer]').forEach(b=>b.onclick=()=>openNew(b.dataset.orderCustomer));
+  const manageItems=$('manageItems');if(manageItems)manageItems.onclick=()=>{route='items';render()};
+  const manageCustomers=$('manageCustomers');if(manageCustomers)manageCustomers.onclick=()=>{route='customers';render()};
+  const search=$('customerSearch');if(search)search.oninput=e=>{customerSearch=e.target.value;renderCustomersOnly()};
+}
+function renderCustomersOnly(){
+  if(route!=='customers')return;
+  const q=customerSearch.trim().toLowerCase();
+  const list=activeCustomers().filter(c=>!q||[c.name,c.phone,c.notes,c.regular_notes].some(v=>String(v||'').toLowerCase().includes(q)));
+  $('customerList').innerHTML=list.map(c=>customerCard(c)).join('')||'<div class="card muted empty">No customers match that search.</div>';
+  wire();
+  const search=$('customerSearch');if(search){search.value=customerSearch;search.focus();search.setSelectionRange(search.value.length,search.value.length)}
 }
 function render(){
   document.querySelectorAll('[data-route]').forEach(b=>b.classList.toggle('active',b.dataset.route===route));
   const list=activeOrders();
-  $('fab').classList.toggle('hidden',route==='items'&&!canManageItems());
+  $('fab').classList.toggle('hidden',(route==='items'||route==='customers')&&!canManage());
   if(route==='today'){
     let today=list.filter(o=>o.order_date===d()),over=list.filter(o=>o.order_date<d()),tom=list.filter(o=>o.order_date===d(1));
     $('title').textContent='Today';
-    $('view').innerHTML=`<div class="hero"><h2>Today</h2><div class="metrics"><div class="metric"><strong>${today.length}</strong>Today</div><div class="metric"><strong>${over.length}</strong>Overdue</div><div class="metric"><strong>${tom.length}</strong>Tomorrow</div></div><div class="quick"><button id="manageItems" class="secondary">Manage items · ${activeItems().length}</button></div></div><div class="section"><h2>Orders</h2><span class="muted">${today.length}</span></div><div class="stack">${today.map(orderCard).join('')||'<div class="card muted empty">No orders today.</div>'}</div>`;
+    $('view').innerHTML=`<div class="hero"><h2>Today</h2><div class="metrics"><div class="metric"><strong>${today.length}</strong>Today</div><div class="metric"><strong>${over.length}</strong>Overdue</div><div class="metric"><strong>${tom.length}</strong>Tomorrow</div></div><div class="quick"><button id="manageCustomers" class="secondary">Customers · ${activeCustomers().length}</button><button id="manageItems" class="secondary">Items · ${activeItems().length}</button></div></div><div class="section"><h2>Orders</h2><span class="muted">${today.length}</span></div><div class="stack">${today.map(orderCard).join('')||'<div class="card muted empty">No orders today.</div>'}</div>`;
   }else if(route==='upcoming'){
     let x=list.filter(o=>o.order_date>d()).sort((a,b)=>a.order_date.localeCompare(b.order_date));
-    $('title').textContent='Upcoming';
-    $('view').innerHTML='<div class="stack">'+(x.map(orderCard).join('')||'<div class="card muted empty">No upcoming orders.</div>')+'</div>';
+    $('title').textContent='Upcoming';$('view').innerHTML='<div class="stack">'+(x.map(orderCard).join('')||'<div class="card muted empty">No upcoming orders.</div>')+'</div>';
   }else if(route==='regular'){
-    let x=list.filter(o=>o.order_type==='regular');
+    let x=activeCustomers().filter(c=>c.is_regular);
     $('title').textContent='Regular';
-    $('view').innerHTML='<div class="stack">'+(x.map(orderCard).join('')||'<div class="card muted empty">No regular orders.</div>')+'</div>';
+    $('view').innerHTML=`<div class="hero"><h2>Regular customers</h2><p style="margin-top:6px;opacity:.8">Patterns identified from the order book. Use Order to prefill a new order.</p><div class="metrics"><div class="metric"><strong>${x.length}</strong>Regular</div><div class="metric"><strong>${x.filter(c=>c.regular_day).length}</strong>Scheduled</div><div class="metric"><strong>${x.filter(c=>c.phone).length}</strong>With phone</div></div></div><div class="stack">${x.map(c=>customerCard(c,true)).join('')||'<div class="card muted empty">No regular customers yet.</div>'}</div>`;
+  }else if(route==='customers'){
+    $('title').textContent='Customers';
+    const regularCount=activeCustomers().filter(c=>c.is_regular).length, phoneCount=activeCustomers().filter(c=>c.phone).length;
+    $('view').innerHTML=`<div class="hero"><h2>Customer book</h2><p style="margin-top:6px;opacity:.8">Names, phone numbers and recurring order patterns.</p><div class="metrics"><div class="metric"><strong>${activeCustomers().length}</strong>Customers</div><div class="metric"><strong>${regularCount}</strong>Regular</div><div class="metric"><strong>${phoneCount}</strong>With phone</div></div></div><input id="customerSearch" class="search" placeholder="Search name, phone or notes" value="${esc(customerSearch)}"><div id="customerList" class="stack"></div>`;
+    renderCustomersOnly();return;
   }else{
-    $('title').textContent='Items';
-    const activeCount=activeItems().length;
+    $('title').textContent='Items';const activeCount=activeItems().length;
     const grouped=brands().map(brand=>`<section class="brand-group"><div class="brand-head"><h3>${esc(brand)}</h3><span class="muted">${itemsForBrand(brand).length} item${itemsForBrand(brand).length===1?'':'s'}</span></div><div class="stack">${itemsForBrand(brand).map(itemCard).join('')}</div></section>`).join('');
-    $('view').innerHTML=`<div class="hero"><h2>Item catalogue</h2><p style="margin-top:6px;opacity:.8">Breads are grouped by brand for quicker browsing.</p><div class="metrics"><div class="metric"><strong>${items.length}</strong>Total</div><div class="metric"><strong>${activeCount}</strong>Active</div><div class="metric"><strong>${brands().length}</strong>Brands</div></div></div><div class="section"><h2>Saved items</h2><span class="muted">${canManageItems()?'Tap + to add':'View only'}</span></div>${grouped||'<div class="card muted empty">No items yet. Tap + to add your first one.</div>'}`;
+    $('view').innerHTML=`<div class="hero"><h2>Item catalogue</h2><p style="margin-top:6px;opacity:.8">Breads are grouped by brand for quicker browsing.</p><div class="metrics"><div class="metric"><strong>${items.length}</strong>Total</div><div class="metric"><strong>${activeCount}</strong>Active</div><div class="metric"><strong>${brands().length}</strong>Brands</div></div></div><div class="section"><h2>Saved items</h2><span class="muted">${canManage()?'Tap + to add':'View only'}</span></div>${grouped||'<div class="card muted empty">No items yet. Tap + to add your first one.</div>'}`;
   }
   wire();
 }
-function openNew(){
-  const choices=activeItems();
-  if(!choices.length){
-    if(canManageItems()){route='items';render();alert('Add at least one active item first.');}
-    else alert('No active items are available yet.');
-    return;
-  }
-  let type='one_time';
-  const brandOptions=brands(true).map(b=>'<option value="'+esc(b)+'">'+esc(b)+'</option>').join('');
+function openNew(prefillCustomerId=null){
+  const choices=activeItems();if(!choices.length){if(canManage()){route='items';render();alert('Add at least one active item first.')}else alert('No active items are available yet.');return}
+  let type='one_time';const brandOptions=brands(true).map(b=>'<option value="'+esc(b)+'">'+esc(b)+'</option>').join('');
+  const customerOptions=activeCustomers().map(c=>'<option value="'+c.id+'">'+esc(c.name)+(c.phone?' · '+esc(c.phone):'')+'</option>').join('');
   $('modal').classList.remove('hidden');
-  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>New bread order</h2><button id="close" class="secondary">Close</button></div><form id="orderForm" class="form" style="margin-top:14px"><input id="name" placeholder="Customer name" required><input id="phone" placeholder="Phone number"><label class="field-label" for="brandSelect">Brand</label><select id="brandSelect" required><option value="">Select brand</option>${brandOptions}</select><label class="field-label" for="itemSelect">Bread</label><select id="itemSelect" required disabled><option value="">Select a brand first</option></select><div class="two"><input id="qty" type="number" min="1" value="1" required><input id="date" type="date" value="${d(1)}" required></div><div class="seg"><button type="button" id="one" class="secondary active">One-time</button><button type="button" id="reg" class="secondary">Regular weekly</button></div><button class="primary">Add order</button></form></div>`;
+  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>New bread order</h2><button id="close" class="secondary">Close</button></div><form id="orderForm" class="form" style="margin-top:14px"><label class="field-label" for="customerSelect">Customer</label><select id="customerSelect"><option value="">New / one-off customer</option>${customerOptions}</select><input id="name" placeholder="Customer name" required><input id="phone" placeholder="Phone number"><label class="field-label" for="brandSelect">Brand</label><select id="brandSelect" required><option value="">Select brand</option>${brandOptions}</select><label class="field-label" for="itemSelect">Bread</label><select id="itemSelect" required disabled><option value="">Select a brand first</option></select><div class="two"><input id="qty" type="number" min="1" value="1" required><input id="date" type="date" value="${d(1)}" required></div><div class="seg"><button type="button" id="one" class="secondary active">One-time</button><button type="button" id="reg" class="secondary">Regular weekly</button></div><button class="primary">Add order</button></form></div>`;
   $('close').onclick=()=>$('modal').classList.add('hidden');
-  $('brandSelect').onchange=()=>{
-    const brand=$('brandSelect').value;
-    const bread=$('itemSelect');
-    if(!brand){bread.innerHTML='<option value="">Select a brand first</option>';bread.disabled=true;return;}
-    const filtered=itemsForBrand(brand,true);
-    bread.innerHTML='<option value="">Select bread</option>'+filtered.map(i=>'<option value="'+i.id+'">'+esc(i.name)+'</option>').join('');
-    bread.disabled=false;
-  };
-  $('one').onclick=()=>{type='one_time';$('one').classList.add('active');$('reg').classList.remove('active')};
-  $('reg').onclick=()=>{type='regular';$('reg').classList.add('active');$('one').classList.remove('active')};
+  function fillCustomer(id){let c=customers.find(x=>x.id===id);if(c){$('name').value=c.name;$('phone').value=c.phone||''}}
+  $('customerSelect').onchange=()=>fillCustomer($('customerSelect').value);
+  if(prefillCustomerId){$('customerSelect').value=prefillCustomerId;fillCustomer(prefillCustomerId)}
+  $('brandSelect').onchange=()=>{const brand=$('brandSelect').value,bread=$('itemSelect');if(!brand){bread.innerHTML='<option value="">Select a brand first</option>';bread.disabled=true;return}const filtered=itemsForBrand(brand,true);bread.innerHTML='<option value="">Select bread</option>'+filtered.map(i=>'<option value="'+i.id+'">'+esc(i.name)+'</option>').join('');bread.disabled=false};
+  $('one').onclick=()=>{type='one_time';$('one').classList.add('active');$('reg').classList.remove('active')};$('reg').onclick=()=>{type='regular';$('reg').classList.add('active');$('one').classList.remove('active')};
   $('orderForm').onsubmit=async e=>{
-    e.preventDefault();
-    const item=items.find(i=>i.id===$('itemSelect').value);
-    if(!item)return alert('Please select a bread.');
-    let payload={store_id:storeId,customer_name:$('name').value.trim(),phone:$('phone').value.trim()||null,brand:item.brand,bread_type:item.name,quantity:Number($('qty').value),order_date:$('date').value,order_type:type,status:'pending',created_by:session.user.id,updated_at:new Date().toISOString()};
-    let r=await sb.from('bread_orders_simple').insert(payload);
-    if(r.error)return alert(r.error.message);
-    $('modal').classList.add('hidden');refresh();
+    e.preventDefault();const item=items.find(i=>i.id===$('itemSelect').value);if(!item)return alert('Please select a bread.');
+    let selectedId=$('customerSelect').value||null,name=$('name').value.trim(),phone=$('phone').value.trim()||null;
+    if(!selectedId){
+      const existing=customers.find(c=>c.name.toLowerCase()===name.toLowerCase());
+      if(existing)selectedId=existing.id;
+      else{
+        const cr=await sb.from('customers').insert({store_id:storeId,name,phone,active:true,last_used_at:new Date().toISOString(),updated_at:new Date().toISOString()}).select().single();
+        if(cr.error)return alert(cr.error.message);selectedId=cr.data.id;
+      }
+    }else{
+      const cr=await sb.from('customers').update({phone:phone||undefined,last_used_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('id',selectedId);
+      if(cr.error)return alert(cr.error.message);
+    }
+    let payload={store_id:storeId,customer_name:name,phone,brand:item.brand,bread_type:item.name,quantity:Number($('qty').value),order_date:$('date').value,order_type:type,status:'pending',created_by:session.user.id,updated_at:new Date().toISOString()};
+    let r=await sb.from('bread_orders_simple').insert(payload);if(r.error)return alert(r.error.message);$('modal').classList.add('hidden');refresh();
+  };
+}
+function openCustomer(c=null){
+  if(!canManage())return;const editing=!!c;const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  $('modal').classList.remove('hidden');
+  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>${editing?'Edit customer':'Add customer'}</h2><button id="close" class="secondary">Close</button></div><form id="customerForm" class="form" style="margin-top:14px"><input id="custName" placeholder="Customer name" value="${esc(c?.name||'')}" required><input id="custPhone" placeholder="Phone number" value="${esc(c?.phone||'')}"><textarea id="custNotes" placeholder="General notes">${esc(c?.notes||'')}</textarea><label class="checkrow"><input id="custRegular" type="checkbox" ${c?.is_regular?'checked':''}> Regular customer</label><div id="regularFields" class="${c?.is_regular?'':'hidden'} form"><div class="two"><select id="custDay"><option value="">Day varies</option>${days.map(x=>'<option value="'+x+'" '+(c?.regular_day===x?'selected':'')+'>'+x+'</option>').join('')}</select><select id="custFreq"><option value="">Frequency varies</option><option value="1" ${c?.regular_frequency_weeks===1?'selected':''}>Weekly</option><option value="2" ${c?.regular_frequency_weeks===2?'selected':''}>Fortnightly</option><option value="4" ${c?.regular_frequency_weeks===4?'selected':''}>Every 4 weeks</option></select></div><textarea id="custRegularNotes" placeholder="Typical regular order">${esc(c?.regular_notes||'')}</textarea></div><label class="checkrow"><input id="custActive" type="checkbox" ${c?.active===false?'':'checked'}> Active customer</label><button class="primary">${editing?'Save changes':'Add customer'}</button></form></div>`;
+  $('close').onclick=()=>$('modal').classList.add('hidden');$('custRegular').onchange=()=>$('regularFields').classList.toggle('hidden',!$('custRegular').checked);
+  $('customerForm').onsubmit=async e=>{
+    e.preventDefault();const regular=$('custRegular').checked;
+    const payload={store_id:storeId,name:$('custName').value.trim(),phone:$('custPhone').value.trim()||null,notes:$('custNotes').value.trim()||null,active:$('custActive').checked,is_regular:regular,regular_day:regular?($('custDay').value||null):null,regular_frequency_weeks:regular&&$('custFreq').value?Number($('custFreq').value):null,regular_notes:regular?($('custRegularNotes').value.trim()||null):null,updated_at:new Date().toISOString()};
+    const r=editing?await sb.from('customers').update(payload).eq('id',c.id):await sb.from('customers').insert(payload);
+    if(r.error)return alert(r.error.message);$('modal').classList.add('hidden');refresh();
   };
 }
 function openItem(){
-  if(!canManageItems())return;
-  const options=brands().map(b=>'<option value="'+esc(b)+'">'+esc(b)+'</option>').join('');
-  $('modal').classList.remove('hidden');
-  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Add item</h2><button id="close" class="secondary">Close</button></div><form id="itemForm" class="form" style="margin-top:14px"><label class="field-label" for="brandChoice">Brand</label><select id="brandChoice" required><option value="">Select brand</option>${options}<option value="__new__">+ Add new brand…</option></select><input id="newBrand" class="hidden" placeholder="New brand name"><label class="field-label" for="itemName">Bread</label><input id="itemName" placeholder="e.g. Wholemeal Bread" required><button class="primary">Save item</button></form></div>`;
-  $('close').onclick=()=>$('modal').classList.add('hidden');
-  $('brandChoice').onchange=()=>{
-    const isNew=$('brandChoice').value==='__new__';
-    $('newBrand').classList.toggle('hidden',!isNew);
-    $('newBrand').required=isNew;
-  };
-  $('itemForm').onsubmit=async e=>{
-    e.preventDefault();
-    const brand=$('brandChoice').value==='__new__'?$('newBrand').value.trim():$('brandChoice').value;
-    if(!brand)return alert('Please select or add a brand.');
-    const payload={store_id:storeId,brand,name:$('itemName').value.trim(),active:true,created_by:session.user.id,updated_at:new Date().toISOString()};
-    let r=await sb.from('bread_items').insert(payload);
-    if(r.error){
-      if(r.error.code==='23505')return alert('That item already exists.');
-      return alert(r.error.message);
-    }
-    $('modal').classList.add('hidden');refresh();
-  };
+  if(!canManage())return;const options=brands().map(b=>'<option value="'+esc(b)+'">'+esc(b)+'</option>').join('');
+  $('modal').classList.remove('hidden');$('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Add item</h2><button id="close" class="secondary">Close</button></div><form id="itemForm" class="form" style="margin-top:14px"><label class="field-label" for="brandChoice">Brand</label><select id="brandChoice" required><option value="">Select brand</option>${options}<option value="__new__">+ Add new brand…</option></select><input id="newBrand" class="hidden" placeholder="New brand name"><label class="field-label" for="itemName">Bread</label><input id="itemName" placeholder="e.g. Wholemeal Bread" required><button class="primary">Save item</button></form></div>`;
+  $('close').onclick=()=>$('modal').classList.add('hidden');$('brandChoice').onchange=()=>{const n=$('brandChoice').value==='__new__';$('newBrand').classList.toggle('hidden',!n);$('newBrand').required=n};
+  $('itemForm').onsubmit=async e=>{e.preventDefault();const brand=$('brandChoice').value==='__new__'?$('newBrand').value.trim():$('brandChoice').value;if(!brand)return alert('Please select or add a brand.');const payload={store_id:storeId,brand,name:$('itemName').value.trim(),active:true,created_by:session.user.id,updated_at:new Date().toISOString()};let r=await sb.from('bread_items').insert(payload);if(r.error){if(r.error.code==='23505')return alert('That item already exists.');return alert(r.error.message)}$('modal').classList.add('hidden');refresh()};
 }
 function openEditItem(item){
-  if(!canManageItems()||!item)return;
-  const options=brands().map(b=>'<option value="'+esc(b)+'" '+(b===item.brand?'selected':'')+'>'+esc(b)+'</option>').join('');
-  $('modal').classList.remove('hidden');
-  $('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Edit item</h2><button id="close" class="secondary">Close</button></div><form id="editItemForm" class="form" style="margin-top:14px"><label class="field-label" for="editBrandChoice">Brand</label><select id="editBrandChoice" required>${options}<option value="__new__">+ Add new brand…</option></select><input id="editNewBrand" class="hidden" placeholder="New brand name"><label class="field-label" for="editItemName">Bread</label><input id="editItemName" placeholder="Bread name" value="${esc(item.name)}" required><button class="primary">Save changes</button></form></div>`;
-  $('close').onclick=()=>$('modal').classList.add('hidden');
-  $('editBrandChoice').onchange=()=>{
-    const isNew=$('editBrandChoice').value==='__new__';
-    $('editNewBrand').classList.toggle('hidden',!isNew);
-    $('editNewBrand').required=isNew;
-  };
-  $('editItemForm').onsubmit=async e=>{
-    e.preventDefault();
-    const brand=$('editBrandChoice').value==='__new__'?$('editNewBrand').value.trim():$('editBrandChoice').value;
-    const name=$('editItemName').value.trim();
-    if(!brand||!name)return alert('Brand and bread name are required.');
-    let r=await sb.from('bread_items').update({brand,name,updated_at:new Date().toISOString()}).eq('id',item.id);
-    if(r.error){
-      if(r.error.code==='23505')return alert('An item with that brand and bread name already exists.');
-      return alert(r.error.message);
-    }
-    $('modal').classList.add('hidden');refresh();
-  };
+  if(!canManage()||!item)return;const options=brands().map(b=>'<option value="'+esc(b)+'" '+(b===item.brand?'selected':'')+'>'+esc(b)+'</option>').join('');
+  $('modal').classList.remove('hidden');$('modal').innerHTML=`<div class="sheet"><div class="row"><h2>Edit item</h2><button id="close" class="secondary">Close</button></div><form id="editItemForm" class="form" style="margin-top:14px"><label class="field-label">Brand</label><select id="editBrandChoice" required>${options}<option value="__new__">+ Add new brand…</option></select><input id="editNewBrand" class="hidden" placeholder="New brand name"><label class="field-label">Bread</label><input id="editItemName" value="${esc(item.name)}" required><button class="primary">Save changes</button></form></div>`;
+  $('close').onclick=()=>$('modal').classList.add('hidden');$('editBrandChoice').onchange=()=>{const n=$('editBrandChoice').value==='__new__';$('editNewBrand').classList.toggle('hidden',!n);$('editNewBrand').required=n};
+  $('editItemForm').onsubmit=async e=>{e.preventDefault();const brand=$('editBrandChoice').value==='__new__'?$('editNewBrand').value.trim():$('editBrandChoice').value,name=$('editItemName').value.trim();if(!brand||!name)return alert('Brand and bread name are required.');let r=await sb.from('bread_items').update({brand,name,updated_at:new Date().toISOString()}).eq('id',item.id);if(r.error){if(r.error.code==='23505')return alert('An item with that brand and bread name already exists.');return alert(r.error.message)}$('modal').classList.add('hidden');refresh()};
 }
 let authMode='signin';
-function setAuthMode(mode){
-  authMode=mode;const create=mode==='signup';
-  $('displayName').classList.toggle('hidden',!create);$('displayName').required=create;
-  $('authSubmit').textContent=create?'Create admin account':'Sign in';
-  $('authToggle').textContent=create?'Back to sign in':'Create first admin account';
-  $('authHelp').textContent=create?'Use this only for the first shop administrator.':'Sign in with your staff account.';
-  $('authErr').textContent='';
-}
+function setAuthMode(mode){authMode=mode;const create=mode==='signup';$('displayName').classList.toggle('hidden',!create);$('displayName').required=create;$('authSubmit').textContent=create?'Create admin account':'Sign in';$('authToggle').textContent=create?'Back to sign in':'Create first admin account';$('authHelp').textContent=create?'Use this only for the first shop administrator.':'Sign in with your staff account.';$('authErr').textContent=''}
 $('authToggle').onclick=()=>setAuthMode(authMode==='signin'?'signup':'signin');
-$('authForm').onsubmit=async e=>{
-  e.preventDefault();$('authErr').textContent='';
-  if(authMode==='signup'){
-    let r=await sb.auth.signUp({email:$('email').value.trim(),password:$('password').value});
-    if(r.error)return $('authErr').textContent=r.error.message;
-    session=r.data.session;
-    if(!session){
-      $('authErr').textContent='Account created. Check your email if confirmation is required, then sign in.';
-      setAuthMode('signin');return;
-    }
-    let b=await sb.rpc('bootstrap_first_admin',{p_display_name:$('displayName').value.trim()||'Admin'});
-    if(b.error){$('authErr').textContent=b.error.message;await sb.auth.signOut();return}
-    await enter();return;
-  }
-  let r=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
-  if(r.error)return $('authErr').textContent=r.error.message;
-  session=r.data.session;await enter();
-};
-async function enter(){
-  let p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();
-  if(p.error)return $('authErr').textContent=p.error.message;
-  if(!p.data){
-    let boot=await sb.rpc('bootstrap_first_admin',{p_display_name:(session.user.email||'Admin').split('@')[0]});
-    if(!boot.error)p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();
-    if(!p.data){
-      let a=await sb.rpc('accept_staff_invite');
-      if(!a.error)p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();
-      if((boot.error&&boot.error.message!=='Admin bootstrap is closed')||a.error||!p.data){
-        $('authErr').textContent='Access unavailable. Your email has not been authorised by the store owner.';
-        await sb.auth.signOut();return;
-      }
-    }
-  }
-  profile=p.data;storeId=profile.store_id;
-  $('auth').classList.add('hidden');$('app').classList.remove('hidden');refresh();
-}
+$('authForm').onsubmit=async e=>{e.preventDefault();$('authErr').textContent='';if(authMode==='signup'){let r=await sb.auth.signUp({email:$('email').value.trim(),password:$('password').value});if(r.error)return $('authErr').textContent=r.error.message;session=r.data.session;if(!session){$('authErr').textContent='Account created. Check your email if confirmation is required, then sign in.';setAuthMode('signin');return}let b=await sb.rpc('bootstrap_first_admin',{p_display_name:$('displayName').value.trim()||'Admin'});if(b.error){$('authErr').textContent=b.error.message;await sb.auth.signOut();return}await enter();return}let r=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(r.error)return $('authErr').textContent=r.error.message;session=r.data.session;await enter()};
+async function enter(){let p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();if(p.error)return $('authErr').textContent=p.error.message;if(!p.data){let boot=await sb.rpc('bootstrap_first_admin',{p_display_name:(session.user.email||'Admin').split('@')[0]});if(!boot.error)p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();if(!p.data){let a=await sb.rpc('accept_staff_invite');if(!a.error)p=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();if((boot.error&&boot.error.message!=='Admin bootstrap is closed')||a.error||!p.data){$('authErr').textContent='Access unavailable. Your email has not been authorised by the store owner.';await sb.auth.signOut();return}}}profile=p.data;storeId=profile.store_id;$('auth').classList.add('hidden');$('app').classList.remove('hidden');refresh()}
 $('signout').onclick=async()=>{await sb.auth.signOut();location.reload()};
-$('fab').onclick=()=>route==='items'?openItem():openNew();
-document.querySelectorAll('[data-route]').forEach(b=>b.onclick=()=>{route=b.dataset.route;render()});
+$('fab').onclick=()=>route==='items'?openItem():route==='customers'?openCustomer():openNew();
+document.querySelectorAll('[data-route]').forEach(b=>b.onclick=()=>{route=b.dataset.route;customerSearch='';render()});
 (async()=>{let s=await sb.auth.getSession();session=s.data.session;if(session)enter()})();
 </script>
 </body>
